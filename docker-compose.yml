@@ -1,0 +1,17 @@
+version: "3.7"
+volumes:
+  data: {}
+services:
+  jenkins:
+    image: adbv/jenkins
+    restart: unless-stopped
+    ports:
+      - "80:8080"
+    volumes:
+      - data:/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jenkins.entrypoints=http"
+      - "traefik.http.routers.jenkins.rule=Host(`jenkins.loc`)"
+      - "traefik.http.services.jenkins.loadbalancer.server.port=8080"
