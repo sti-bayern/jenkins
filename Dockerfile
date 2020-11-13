@@ -1,4 +1,4 @@
-FROM adbv/base:v1.0
+FROM adbv/base:v2.0
 
 LABEL maintainer="Guenther Morhart"
 
@@ -20,5 +20,5 @@ RUN apk add --no-cache \
         /var/cache/jenkins && \
     chown -R app:app /var/cache/jenkins && \
     wget -O /usr/share/webapps/jenkins/jenkins.war https://updates.jenkins-ci.org/latest/jenkins.war
-
-COPY s6/ /s6/jenkins/
+    
+CMD ["su-exec", "app", "java", "-Djava.awt.headless=true", "-jar", "/usr/share/webapps/jenkins/jenkins.war", "--webroot=/var/cache/jenkins"]
