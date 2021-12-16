@@ -19,6 +19,6 @@ RUN apk add --no-cache \
         /usr/share/webapps/jenkins \
         /var/cache/jenkins && \
     chown -R app:app /var/cache/jenkins && \
-    curl  -L -o /usr/share/webapps/jenkins/jenkins.war https://updates.jenkins.io/download/war/2.267/jenkins.war
+    curl  -L -o /usr/share/webapps/jenkins/jenkins.war https://updates.jenkins.io/download/war/2.325/jenkins.war
     
 CMD ["su-exec", "app", "java", "-Djava.awt.headless=true", "-jar", "/usr/share/webapps/jenkins/jenkins.war", "--webroot=/var/cache/jenkins"]
